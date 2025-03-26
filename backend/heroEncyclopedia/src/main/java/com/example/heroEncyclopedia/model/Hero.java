@@ -6,15 +6,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class Hero {
 
-    private Integer rank;
+
     private String name;
     private String alias;
+    private Integer rank;
+    private String heroClass;
+    private List<String> abilities;
+    private String personality;
     private String description;
     private String imageUrl;
 

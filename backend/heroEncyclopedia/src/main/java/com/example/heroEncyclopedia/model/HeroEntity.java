@@ -1,13 +1,13 @@
 package com.example.heroEncyclopedia.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,9 +18,14 @@ import lombok.NoArgsConstructor;
 public class HeroEntity {
 
     @Id
-    private Integer rank;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
     private String alias;
+    private Integer rank;
+    private String heroClass;
+    private List<String> abilities;
+    private String personality;
     private String description;
     private String imageUrl;
 

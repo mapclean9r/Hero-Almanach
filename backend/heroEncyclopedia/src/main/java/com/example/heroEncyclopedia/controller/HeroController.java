@@ -19,11 +19,11 @@ public class HeroController {
         this.heroService = heroService;
     }
 
-    @PutMapping(path = "/api/heroes/{rank}")
+    @PutMapping(path = "/api/heroes/{id}")
     public ResponseEntity<Hero> createUpdateHero(
-            @PathVariable final Integer rank,
+            @PathVariable final Integer id,
             @RequestBody final Hero hero){
-        hero.setRank(rank);
+        hero.setRank(id);
         final boolean isHeroExists = heroService.isHeroExist(hero);
         final Hero savedHero = heroService.save(hero);
 
@@ -33,10 +33,10 @@ public class HeroController {
         return new ResponseEntity<>(savedHero, HttpStatus.CREATED);
     }
 
-    @GetMapping(path = "/api/heroes/{rank}")
-    public ResponseEntity<Hero> getHeroByRank(@PathVariable final Integer rank) {
+    @GetMapping(path = "/api/heroes/{id}")
+    public ResponseEntity<Hero> getHeroByRank(@PathVariable final Integer id) {
 
-        return heroService.findById(rank)
+        return heroService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }

@@ -29,8 +29,8 @@ public class HeroService implements IHeroService {
     }
 
     @Override
-    public Optional<Hero> findById(Integer rank) {
-        final Optional<HeroEntity> hero = heroRepository.findById(rank);
+    public Optional<Hero> findById(Integer id) {
+        final Optional<HeroEntity> hero = heroRepository.findById(id);
         return hero.map(this::mapperHeroEntityToHero);
     }
 
@@ -45,23 +45,30 @@ public class HeroService implements IHeroService {
         return heroRepository.existsById(hero.getRank());
     }
 
-    private HeroEntity mapperHeroToHeroEntity(Hero hero){
+    private HeroEntity mapperHeroToHeroEntity(Hero hero) {
         return HeroEntity.builder()
                 .rank(hero.getRank())
+                .heroClass(hero.getHeroClass())
                 .name(hero.getName())
                 .alias(hero.getAlias())
-                .description(hero.getDescription())
+                .abilities(hero.getAbilities())
+                .personality(hero.getPersonality())
                 .imageUrl(hero.getImageUrl())
+                .description(hero.getDescription())
                 .build();
     }
 
-    private Hero mapperHeroEntityToHero(HeroEntity heroEntity){
+
+    private Hero mapperHeroEntityToHero(HeroEntity heroEntity) {
         return Hero.builder()
                 .rank(heroEntity.getRank())
+                .heroClass(heroEntity.getHeroClass())
                 .name(heroEntity.getName())
                 .alias(heroEntity.getAlias())
-                .description(heroEntity.getDescription())
+                .abilities(heroEntity.getAbilities())
+                .personality(heroEntity.getPersonality())
                 .imageUrl(heroEntity.getImageUrl())
+                .description(heroEntity.getDescription())
                 .build();
     }
 
